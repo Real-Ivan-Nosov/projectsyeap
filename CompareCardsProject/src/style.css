@@ -1,0 +1,99 @@
+body {
+    background-color:darkslategray;
+    padding-top: 20px;
+}
+
+.container {
+    background-color:palegreen;
+    width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-gap: 20px;
+}
+
+#board {
+    background-color: goldenrod;
+    background-image: url(images/wooden_texture.jpg);
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+#gamelog {
+    display: flex;
+    justify-content: center;
+}
+
+.gamelog-container {
+    display: grid;
+    gap: 10px;
+}
+
+.restart-button {
+    background-color: deeppink;
+}
+
+.card {
+    width: 150px;
+    height: 210px;
+
+    background-color:#fff;
+    background-image: url(images/ahegao.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 100px;
+    color: deeppink;
+}
+
+.done {
+    background-color: ghostwhite;
+    background-image: url(images/check_mark.png);
+}
+
+/* win/fail settings */
+
+.fail {
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(26, 17, 17);
+}
+
+.win {
+    width: 400px;
+}
+
+/* timer settings */
+
+.timer-text {
+    font-weight: 900;
+    font-size: 30px;
+    text-align: center;
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer {
+    padding: 10px;
+
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
