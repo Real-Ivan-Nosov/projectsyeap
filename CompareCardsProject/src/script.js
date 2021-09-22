@@ -4,7 +4,7 @@
     const restartButton = document.querySelector('.restart-button');
     const timer = document.querySelector('.timer');
     const cardsMaxView = 2;
-    const time = 60;
+    const time = 30;
     
     let cardsView = 0;
     let compareObject = {
