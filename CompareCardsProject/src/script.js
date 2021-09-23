@@ -3,9 +3,11 @@
     const GAMELOG = document.getElementById("gamelog");
     const restartButton = document.querySelector('.restart-button');
     const timer = document.querySelector('.timer');
+    const openCatGirls = document.getElementById('cat_girls_open');
+    const catGirlsAll = document.getElementById('cat_girls_all');
     const cardsMaxView = 2;
     const time = 30;
-    
+
     let cardsView = 0;
     let compareObject = {
         firstCard: null,
@@ -13,9 +15,27 @@
         firstCardValue: null,
         secondCardValue: null
     };
-    
+
+    let OpenCatGirlsArray = [];
+
+    // ачив гол
+
+    catGirlsAll.textContent = 10;
+
+
     // создаем колоду
-    let cardsArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+
+    let createCardArray = () => {
+        let size = prompt('Сколько пар карт создать?', 6);
+        let cardsArray = [];
+        for (let i = 0; i < size; i++) {
+            cardsArray.push((i+1));
+            cardsArray.push((i+1));
+        }
+        return cardsArray;
+    }
+
+    let cardsArray = createCardArray();
 
     // тасуем карты
     let shuffle = (array) => {
@@ -31,8 +51,12 @@
 
     let restart = () => {
         let allCardsWinChecker = Array.from(document.querySelectorAll('.card'));
-        if (allCardsWinChecker.every((card) => {return card.dataset.success})) {
-            for (const card of allCardsWinChecker) {card.remove()};
+        if (allCardsWinChecker.every((card) => {
+                return card.dataset.success
+            })) {
+            for (const card of allCardsWinChecker) {
+                card.remove()
+            };
             timer.textContent = time;
             BOARD.textContent = '';
             createCards(cardsArray);
@@ -47,7 +71,9 @@
     let Interval;
 
     let setTimer = () => {
-        if (Interval) {clearInterval(Interval)};
+        if (Interval) {
+            clearInterval(Interval)
+        };
         timer.textContent = time;
         Interval = setInterval(timerHandler, 1000);
     }
@@ -60,7 +86,9 @@
             fail.classList.add('fail');
             fail.textContent = "HAHA U LOUSE HAHA U LOUSE";
             let allCardsWinChecker = Array.from(document.querySelectorAll('.card'));
-            for (const card of allCardsWinChecker) {card.remove()}
+            for (const card of allCardsWinChecker) {
+                card.remove()
+            }
 
             BOARD.append(fail);
         }
@@ -89,7 +117,9 @@
 
     function checkCard(target) {
         if (cardsView < cardsMaxView && !target.watched) {
-            if (!target.dataset.success) {target.textContent = target.dataset.pareValue;};
+            if (!target.dataset.success) {
+                target.textContent = target.dataset.pareValue;
+            };
             target.dataset.watched = true;
             cardsView++;
         } else if (cardsView < cardsMaxView && target.watched) {
@@ -101,15 +131,21 @@
                 card.textContent = '';
                 card.dataset.watched = false;
             };
-            if (!target.dataset.success) {target.textContent = target.dataset.pareValue;};
+            if (!target.dataset.success) {
+                target.textContent = target.dataset.pareValue;
+            };
             target.dataset.watched = true;
         }
     }
 
     function congrats(target) {
         let allCardsWinChecker = Array.from(document.querySelectorAll('.card'));
-        if (allCardsWinChecker.every((card) => {return card.dataset.success})) {
-            for (const card of allCardsWinChecker) {card.remove()};
+        if (allCardsWinChecker.every((card) => {
+                return card.dataset.success
+            })) {
+            for (const card of allCardsWinChecker) {
+                card.remove()
+            };
             clearInterval(Interval);
             let win = document.createElement('img');
             win.classList.add('win');
@@ -118,8 +154,15 @@
             win.src = `src/images/CatGirls/catgirl${randomCatGirl}.jpg`
             BOARD.append(win);
 
-            let audio = new Audio('src/audio/ukrainecut.mp3');
-            audio.play();
+            if (OpenCatGirlsArray.every((girl) => {
+                    girl !== randomCatGirl
+                })) {
+                openCatGirls.textContent++;
+            }
+            OpenCatGirlsArray.push.randomCatGirl;
+
+            // let audio = new Audio('src/audio/ukrainecut.mp3');
+            // audio.play();
         }
     }
 
@@ -128,10 +171,10 @@
         checkPare(target);
 
         checkCard(target);
-        
+
         congrats(target);
     }
-    
+
     // добавляем карты в html
 
     let createCards = (array) => {
@@ -139,7 +182,9 @@
             let card = document.createElement('div');
             card.classList.add('card');
             card.dataset.pareValue = item;
-            card.addEventListener('click', (evt) => {openCard(evt.target)})
+            card.addEventListener('click', (evt) => {
+                openCard(evt.target)
+            })
             BOARD.append(card);
         }
     }
